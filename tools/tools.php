@@ -1,19 +1,4 @@
 <?php
-/*
-Modif F.mugnier:
-- ajout choix version
-- memo port version
-- defaut snmp oid
-ATTENTION: incompatibilitéE !
-*/
-/*
-Modif Michael.M
-- Compatible 1.0
-- snmpwalk coche par defaut
-- Ajout snmpv3 a tester
-- Ajout lecture version et communaute (default device)
-- Todo : return cli pour script
-*/
 
 $DEFAULT_OID = ".1.3.6.1.2.1.1";
 chdir('../../');
@@ -209,13 +194,10 @@ function WalkHost () {
 	}
 
 	$host = strtolower($host);
-// MODIF
-	//	snmp_set_quick_print(0);
 	$snmp_start = microtime (true);
 	$a = '';
 	$a = cacti_snmp_walk($host, $community, $oid, $version, $username, $password, $authprot, $passphrase ,$authphrase, "", $port, 1000);
 	$response_time = round((microtime(true) - $snmp_start) * 1000);	// en millisec
-// FIN MODIF
 	print "<br><br><br><center><table bgcolor=black cellpadding=1 cellspacing=0><tr><td><table width='100%' bgcolor=white><tr><td>";
 
 	print "<center><table border=1px><tr><td colspan=2 bgcolor=white><center><h3>SNMP Walk Results for $host</h3></center></td></tr>";
@@ -226,9 +208,7 @@ function WalkHost () {
 		print "<tr><td>no snmp values returned</td></tr>";
 	print "</table></center>";
 	print "</td></tr></table></td></tr></table>";
-// AJOUT	
 	print "<p>Response time: $response_time ms</p>";
-//	print "<p>Debug : $version $authprot $authphrase</p>";
 }
 
 
