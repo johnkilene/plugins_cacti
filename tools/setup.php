@@ -8,8 +8,6 @@
     Version ........ 0.3
     Purpose ........ Useful Network Tools for Cacti
 
-    Modif FM for add snmp v2
-    Modif MM for cacti version 1.0 and add snmp V3
 *******************************************************************************/
 
 function plugin_tools_install() {
